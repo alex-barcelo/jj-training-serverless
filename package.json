@@ -1,0 +1,30 @@
+{
+  "name": "jj-training-serverless",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "build": "tsc",
+    "watch": "tsc -w",
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "initdb": "dotenv -e .env -- ./local_db_init.sh"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "description": "",
+  "dependencies": {
+    "@aws-sdk/client-dynamodb": "^3.632.0",
+    "express": "^4.19.2",
+    "joi": "^17.13.3",
+    "serverless-http": "^3.2.0",
+    "ulid": "^2.3.0"
+  },
+  "devDependencies": {
+    "@types/express": "^4.17.21",
+    "@types/node": "^22.4.0",
+    "serverless-dynamodb-local": "^0.2.40",
+    "serverless-offline": "^13.6.0",
+    "ts-node": "^10.9.2",
+    "typescript": "^5.5.4"
+  }
+}

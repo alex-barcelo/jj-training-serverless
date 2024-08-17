@@ -1,0 +1,35 @@
+service: jj-training-serverless
+
+useDotenv: true
+
+provider:
+  name: aws
+  runtime: nodejs18.x
+  stage: local
+  region: us-east-1
+  environment:
+    JWT_SECRET: ${env:JWT_SECRET}
+    VERSION: ${env:VERSION}
+    DYNAMODB_TABLE_NAME: ${env:DYNAMODB_TABLE_NAME}
+
+plugins:
+  - serverless-dynamodb-local
+  - serverless-offline
+
+functions:
+  app:
+    handler: src/app.handler
+    events:
+      - httpApi: ANY /
+      - httpApi: 'GET /users'
+      - httpApi: 'GET /about'
+      - httpApi: 'GET /users/{id}'
+      - httpApi: 'GET /admin'
+      - httpApi: 'GET /admin/users'
+      - httpApi: 'POST /admin/users'
+      - httpApi: 'GET /admin/users/{email}'
+      - httpApi: 'PATCH /admin/users/{email}'
+
+custom:
+  serverless-offline:
+    httpPort: 8080
